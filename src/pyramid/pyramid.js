@@ -6,6 +6,27 @@ class Pyramid {
     this.setup();
   }
 
+  // Only use this function to play
+  isMatch(card1, card2 = {value: 0, active: true}) {
+    // Check if both cards are active and equal to 13;
+    if (!(card1.active && card2.active)) return false;
+    if (card1.value + card2.value !== 13) return false;
+
+    this.discard.add([Object.assign(card1), Object.assign(card2)]);
+    card1 = false;
+    card2 = false;
+
+    // Check if the topCard was used in the match
+    // Replace it with the last card put in the pile if so
+    if (this.topCard === false) {
+      this.topCard = this.pile.draw();
+      this.topCard.active = true;
+    }
+
+    this.findActive();
+    return true;
+  }
+
   initialize() {
     this.pyramid = [
       [...Array(1)],
@@ -43,26 +64,6 @@ class Pyramid {
 
     this.topCard = this.stock.deal();
     this.topCard.active = true;
-  }
-
-  isMatch(card1, card2 = {value: 0, active: true}) {
-    // Check if both cards are active and equal to 13;
-    if (!(card1.active && card2.active)) return false;
-    if (card1.value + card2.value !== 13) return false;
-
-    this.discard.add([Object.assign(card1), Object.assign(card2)]);
-    card1 = false;
-    card2 = false;
-
-    // Check if the topCard was used in the match
-    // Replace it with the last card put in the pile if so
-    if (this.topCard === false) {
-      this.topCard = this.pile.draw();
-      this.topCard.active = true;
-    }
-
-    this.findActive();
-    return true;
   }
 
   findActive() {
