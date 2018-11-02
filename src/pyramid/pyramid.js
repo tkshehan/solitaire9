@@ -46,11 +46,12 @@ class Pyramid {
   }
 
   isMatch(card1, card2 = {value: 0, active: true}) {
-    // Check if both cards are active and equal to 13;
+    // Check if both cards are active and the sum of their values is 13;
     if (!(card1.active && card2.active)) return false;
     if (card1.value + card2.value !== 13) return false;
 
-    this.discard.add([Object.assign(card1), Object.assign(card2)]);
+    // Add the cards to the discard pile, and change the space in the pyramid to false by reference;
+    this.discard.add([Object.assign({}, card1), Object.assign({}, card2)]);
     card1 = false;
     card2 = false;
 
@@ -66,6 +67,8 @@ class Pyramid {
   }
 
   findActive() {
+    // Checks if the 2 spots in the pyramid below each card are empty(false),
+    // If so the card is set to active.
     for (let i = 0; i < 5; i++) {
       this.pyramid[i].forEach((card, j) => {
         if (
