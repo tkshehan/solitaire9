@@ -1,6 +1,6 @@
 class Deck {
-  constructor() {
-    this.deck = [];
+  constructor(deck = []) {
+    this.deck = deck;
   }
 
   reset() {
@@ -13,6 +13,7 @@ class Deck {
         this.deck.push({
           value,
           suit,
+          active: false,
         });
       });
     });
