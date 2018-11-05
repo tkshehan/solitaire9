@@ -16,7 +16,6 @@ class Pyramid {
       [...Array(6)],
     ];
     this.stock = new Deck();
-    this.stock.reset();
     this.stock.shuffle();
 
     this.pile = new Stack();
@@ -45,24 +44,57 @@ class Pyramid {
     this.topCard.active = true;
   }
 
+  match(card1, card2 = {value: 0, active: true}) {
+    if (!this.isMatch(card1, card2)) return;
+
+    // Add the cards to the discard pile
+    if (card2.value === 0) {
+      this.discard.add(Object.assign({}, card1));
+    } else {
+      this.discard.add([Object.assign({}, card1), Object.assign({}, card2)]);
+    }
+
+    this.removeCards();
+    this.findActive();
+  }
+
+  removeCards() {
+    // Remove discarded cards from the board by setting them to false
+    this.discard.stack.forEach((card) => {
+      // From the pyramid
+      this.pyramid = this.pyramid.map((row) => {
+        return row.map((rowCard) => {
+          if (rowCard.value === card.value &&
+            rowCard.suit === card.suit) return false;
+          return rowCard;
+        });
+      });
+
+      // From the reserve
+      this.reserve = this.reserve.map((reserveCard) => {
+        if (reserveCard.value === card.value &&
+          reserveCard.suit === card.suit) return false;
+        return reserveCard;
+      });
+
+      // From the topCard, replace it with the last card in the pile
+      if (this.topCard.value === card.value &&
+          this.topCard.suit === card.suit) {
+        if (this.pile.stack.length > 0) {
+          this.topCard = this.pile.deal();
+        } else {
+          this.topCard = this.stock.deal();
+        }
+        this.topCard.active = true;
+      }
+    });
+  }
+
   isMatch(card1, card2 = {value: 0, active: true}) {
     // Check if both cards are active and the sum of their values is 13;
     if (!(card1.active && card2.active)) return false;
     if (card1.value + card2.value !== 13) return false;
 
-    // Add the cards to the discard pile, and change the space in the pyramid to false by reference;
-    this.discard.add([Object.assign({}, card1), Object.assign({}, card2)]);
-    card1 = false;
-    card2 = false;
-
-    // Check if the topCard was used in the match
-    // Replace it with the last card put in the pile if so
-    if (this.topCard === false) {
-      this.topCard = this.pile.draw();
-      this.topCard.active = true;
-    }
-
-    this.findActive();
     return true;
   }
 
@@ -80,7 +112,9 @@ class Pyramid {
         }
       });
     }
+    this.discard.stack.forEach((card) => card.active = false);
   }
 }
 
 module.exports = Pyramid;
+

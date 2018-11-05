@@ -1,0 +1,25 @@
+{
+  "extends": ["react-app", "google"],
+  "rules": {
+    "new-cap": [
+      2,
+      {
+      "capIsNew": false
+     }
+    ],
+    "comma-dangle": [
+      1,
+      "always-multiline"
+    ],
+    "linebreak-style": [
+      2,
+      "windows"
+    ],
+    "require-jsdoc": 0,
+    "no-unused-vars": 1
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+     "sourceType": "module"
+  }
+}

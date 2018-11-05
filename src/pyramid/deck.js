@@ -1,6 +1,11 @@
 class Deck {
-  constructor(deck = []) {
-    this.deck = deck;
+  constructor(deck) {
+    if (deck) {
+      this.deck = deck;
+    } else {
+      this.deck = [];
+      this.reset();
+    }
   }
 
   reset() {
@@ -48,12 +53,15 @@ class Deck {
 }
 
 class Stack {
-  constructor() {
-    this.stack = [];
+  constructor(stack = []) {
+      this.stack = stack.slice();
   }
 
-  add(card) {
-    this.stack = [...this.stack, card];
+  add(cards) {
+    if (!(Array.isArray(cards))) {
+      cards = [cards];
+    }
+    this.stack = [...this.stack, ...cards];
   }
 
   deal(amount = 1) {
