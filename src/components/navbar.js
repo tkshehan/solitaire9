@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Nav() {
+export default function Navbar() {
   return (
     <nav>
       <a href="">Rules</a>
