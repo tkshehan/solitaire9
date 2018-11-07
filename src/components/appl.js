@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import Navbar from './navbar';
 
-export class App extends React.Component {
+export class Appl extends React.Component {
   render() {
     return (
       <div>
@@ -16,4 +16,4 @@ export class App extends React.Component {
   }
 }
 
-export default connect()(App);
+export default connect()(Appl);
