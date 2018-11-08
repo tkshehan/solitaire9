@@ -1,12 +1,13 @@
 import React from 'react';
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
-    <nav>
-      <a href="">Rules</a>
-      <a href="">Play</a>
+    // eslint-disable-next-line
+    <nav role="navigation">
+      <a href="/rules">Rules</a>
+      <a href="/game">Play</a>
       <a href="">Profile/Login</a>
-      <a href="">High Scores</a>
+      <a href="/scores">High Scores</a>
     </nav>
   );
 }
