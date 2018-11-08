@@ -1,31 +1,35 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Switch, Link, Route} from 'react-router-dom';
+import {withRouter, Redirect, Switch, Link, Route} from 'react-router-dom';
 
 import Landing from './landing';
+import Profile from './profile';
+import Scores from './scores';
+import Login from './login';
+import Signup from './signup';
 
 export class Main extends React.Component {
   render() {
     return (
-      <Switch>
-        <main role="main">
-          <header role="banner">
-            <h1><Link to="/">{'Solitaire 9'}</Link></h1>
-          </header>
+      <main role="main">
+        <header role="banner">
+          <h1><Link to="/">{'Solitaire 9'}</Link></h1>
+        </header>
+        <Switch>
 
+          <Redirect from="/rules" to="/" />
           <Route exact path="/" component={Landing} />
-          <Route exact path="/scores" />
+          <Route exact path="/scores" component={Scores} />
 
-          <Route path="/game" />
-          <Route exact path="/profile/:profileId" />
-
-          <Route exact path="/login" />
-          <Route exact path="/signup" />
+          <Route exact path="/profile/login" component={Login} />
+          <Route exact path="/profile/signup" component={Signup} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/signout" />
-        </main>
-      </Switch>
+          <Route path="/game" />
+        </Switch>
+      </main>
     );
   }
 }
 
-export default connect()(Main);
+export default withRouter(connect()(Main));
