@@ -9,10 +9,10 @@ export class Main extends React.Component {
     return (
       <main role="main">
         <header role="banner">
-          <h1><Link to="/">Solitaire 9</Link></h1>
+          <h1><Link to="/">{'Solitaire 9'}</Link></h1>
         </header>
 
-        <Route exact path="/" component={Landing} />
+        {/* <Route exact path="/" component={Landing} />
         <Route exact path="/scores" />
 
         <Route path="/game" />
@@ -20,7 +20,7 @@ export class Main extends React.Component {
 
         <Route exact path="/login" />
         <Route exact path="/signup" />
-        <Route exact path="/signout" />
+        <Route exact path="/signout" /> */}
       </main>
     );
   }
