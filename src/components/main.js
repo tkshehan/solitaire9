@@ -5,7 +5,7 @@ import {withRouter, Redirect, Switch, Link, Route} from 'react-router-dom';
 import Landing from './landing';
 import Profile from './profile';
 import Scores from './scores';
-import Login from './login';
+import LoginPage from './login-page';
 import Signup from './signup';
 
 export class Main extends React.Component {
@@ -21,7 +21,7 @@ export class Main extends React.Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/scores" component={Scores} />
 
-          <Route exact path="/profile/login" component={Login} />
+          <Route exact path="/profile/login" component={LoginPage} />
           <Route exact path="/profile/signup" component={Signup} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/signout" />
