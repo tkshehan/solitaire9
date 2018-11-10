@@ -9,8 +9,7 @@ export default function Navbar(props) {
       <Link to="/rules">Rules</Link>
       <Link to="/game">Play</Link>
       <Link to="/scores">High Scores</Link>
-      <Link to="/profile">Profile/Login/Signup</Link>
+      <Link to="/profile">Profile</Link>
     </nav>
-
   );
 }
