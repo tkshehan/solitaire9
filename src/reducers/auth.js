@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action) {
       loading: {$set: true},
       error: {$set: null},
     });
-  } else if (action.type = AUTH_SUCCESS) {
+  } else if (action.type === AUTH_SUCCESS) {
     return update(state, {
       loading: {$set: false},
       currentUser: {$set: action.currentUser},

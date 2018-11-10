@@ -6,7 +6,7 @@ import Landing from './landing';
 import Profile from './profile';
 import Scores from './scores';
 import LoginPage from './login-page';
-import Signup from './signup';
+import SignupPage from './signup-page';
 
 export class Main extends React.Component {
   render() {
@@ -22,7 +22,7 @@ export class Main extends React.Component {
           <Route exact path="/scores" component={Scores} />
 
           <Route exact path="/profile/login" component={LoginPage} />
-          <Route exact path="/profile/signup" component={Signup} />
+          <Route exact path="/profile/signup" component={SignupPage} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/signout" />
           <Route path="/game" />
