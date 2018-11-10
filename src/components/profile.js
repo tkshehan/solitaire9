@@ -1,11 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
-export default function Profile(props) {
+export function Profile(props) {
+  if (!props.loggedIn) {
+    return <Redirect to="/profile/login" />;
+  }
+
   return (
     <div className="profile">
-      < section >
+      <section>
         <h2>User's Profile</h2>
-      </section >
+      </section>
       <section>
         <h3>Username</h3>
         <table>
@@ -44,3 +50,9 @@ export default function Profile(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.auth.currentUser !== null,
+});
+
+export default connect(mapStateToProps)(Profile);
