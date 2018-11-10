@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import LoginForm from './login-form';
@@ -12,8 +11,3 @@ export default function LoginPage(props) {
     </section>
   );
 }
-
-// import {Link} from 'react-router-dom';
-// <section>
-//   No account? <Link to="profile/signup">signup</Link>
-// </section>
